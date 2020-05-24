@@ -1,0 +1,14 @@
+  schemaspy:
+    image: schemaspy/schemaspy
+    volumes:
+      - ./output:/output
+    container_name: "schemaspy"
+    command: >
+      -t ${DB_TYPE}
+      -host ${DB_HOST}
+      -port ${DB_PORT}
+      -db ${DB_NAME}
+      -u {DB_USER}
+      -p ${DB_PASSWORD}
+      -s ${DB_NAME}
+      -connprops useSSL\\=false
