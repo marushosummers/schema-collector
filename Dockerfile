@@ -18,7 +18,9 @@ ARG SSH_PRIVATE_KEY
 RUN mkdir -p /root/.ssh/ && \
     echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa && \
     chmod -R 600 /root/.ssh/ && \
-    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts 
+    ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts && \
+    mkdir dump && \
+    mkdir diff 
 
 WORKDIR /
 
