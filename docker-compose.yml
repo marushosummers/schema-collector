@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   schema-collector:
-    image: schema_collector
+    image: schema-collector
     build: .
     env_file:
       - ./.env
@@ -9,10 +9,5 @@ services:
       - ./schemaspy:/output
       - ./dump:/dump
       - ./diff:/diff
-      - ./run.sh:/run_.sh
     container_name: "schema-collector"
-    command: >
-      sh -c '
-      chmod +x run_.sh &&
-      sh run_.sh
-      '
+    command: sh run.sh
