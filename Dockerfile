@@ -8,10 +8,10 @@ USER root
 # Install packages
 RUN apk update && \
     apk upgrade && \
-    apk add --no-cache git openssh mysql-client
+    apk add --no-cache bash git diffutils openssh mysql-client
 
-ADD run_schemaspy.sh /run_schemaspy
-ADD upload_repository.sh /upload_repository
+ADD sh /sh
+ADD run.sh /run.sh
 
 # Add ssh credential on build
 ARG SSH_PRIVATE_KEY

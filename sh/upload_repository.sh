@@ -1,11 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
 echo "Upload Github Repository..."
 
 cd repo
-cp -r ../output/* $SAVE_PATH
+cp -R /output/* ${SAVE_PATH}schemaspy
+cp -R /dump/* ${SAVE_PATH}dump
+cp -R /diff/* ${SAVE_PATH}diff
 git config --global user.email "$GITHUB_EMAIL"
 git config --global user.name "$GITHUB_NAME"
 git add .

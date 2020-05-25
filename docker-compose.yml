@@ -6,11 +6,13 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./output:/output
+      - ./schemaspy:/output
+      - ./dump:/dump
+      - ./diff:/diff
+      - ./run.sh:/run_.sh
     container_name: "schema-collector"
     command: >
       sh -c '
-      ls -la &&
-      sh run_schemaspy &&
-      sh upload_repository
+      chmod +x run_.sh &&
+      sh run_.sh
       '

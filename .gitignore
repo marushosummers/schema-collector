@@ -8,3 +8,6 @@ env.bak/
 venv.bak/
 
 output/
+schemaspy/
+dump/
+diff/
