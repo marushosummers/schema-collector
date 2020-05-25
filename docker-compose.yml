@@ -3,26 +3,14 @@ services:
   schema-collector:
     image: schema_collector
     build: .
+    env_file:
+      - ./.env
     volumes:
       - ./output:/output
     container_name: "schema-collector"
     command: >
       sh -c '
-      /usr/local/bin/schemaspy 
-      -t ${DB_TYPE}
-      -host ${DB_HOST}
-      -port ${DB_PORT}
-      -db ${DB_NAME}
-      -u ${DB_USER}
-      -p ${DB_PASSWORD}
-      -s ${DB_NAME}
-      -connprops useSSL\\=false &&
-      git clone -b ${BRANCH} ${GITHUB_URL} repo &&
-      cp -r output/* "repo/${SAVE_PATH}" &&
-      cd repo &&
-      git config --global user.email "${GITHUB_EMAIL}" &&
-      git config --global user.name "${GITHUB_NAME}" &&
-      git add . &&
-      git status &&
-      git commit -m "Update schemaspy by schema-collector" &&
-      git push origin ${BRANCH}'
+      ls -la &&
+      sh run_schemaspy &&
+      sh upload_repository
+      '
